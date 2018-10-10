@@ -1,0 +1,53 @@
+How does JavaScript event work?
+A single-threaded, non-blocking, asynchronous, concurrent language.
+
+JavaScript has call stack, an event loop, a callback queue and other APIs.
+
+JavaScript is a single threaded programming language(single threaded runtime) 
+=> single call stack
+=> one thread == one call stack == one thing at a time (not really)
+
+Call stack is a data structure which records where in the program we are.
+
+Example (Blowing the stack)
+============================================================================
+ function foo(){
+    return foo();
+ }
+
+ foo();
+
+-> Uncaught RangeError: Maximum call stack size exceeded
+============================================================================
+
+Blocking
+(Things which are slow and are on that stack are what blocking means.)
+
+-- If call stack has things on it and we block it, the browser cant do anything else.
+
+Async Callbacks & The Call Stack
+Concurrency & The Event Loop
+
+JavaScript Runtime can only do one thing at one time.
+The reason we can do things concurrently is that the browser is more than just the Runtime! 
+
+(heap-stack-webapis-callback-queue.png)
+
+WebAPIs - 'threads' you can just make calls to.
+
+Example
+=====================================
+console.log("Hi");
+
+setTimeout(function (){
+	console.log('there');
+}, 5000);
+
+console.log('Js example');
+
+====================================
+setTimeout is an API provided to us by the browser, it doesn't live in the V8 source.
+Any of the web APIs pushes the callback on to the task queue when it's done.
+
+The event loops job is to look at the stack and look at the task queue.
+If the stack is empty it takes the first thing on the queue and pushes it on to the stack, which tun it.
