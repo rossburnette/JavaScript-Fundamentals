@@ -6,7 +6,7 @@ JavaScript has call stack, an event loop, a callback queue and other APIs.
 JavaScript is a single threaded programming language(single threaded runtime) 
 => single call stack
 => one thread == one call stack == one thing at a time (not really)
-
+--
 Call stack is a data structure which records where in the program we are.
 
 Example (Blowing the stack)
