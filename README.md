@@ -1,2 +1,5 @@
 # JavaScript
-![javascript](https://cdn-images-1.medium.com/max/2000/1*6ahbWjp_g9hqhaTDSJOL1Q.png)
+
+A single-threaded, non-blocking, asynchronous, concurrent language.
+JavaScript has call stack, an event loop, a callback queue and other APIs.
+![javascript](https://progressbg.net/wp-content/uploads/2015/06/photo1.png)
