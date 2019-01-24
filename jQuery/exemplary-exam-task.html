@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#btn").click(function () {
+
+                // gets the number from the textbox
+                const elementsCount = $("#num").val();
+                let textVar = "";
+
+                for (let i = 0; i < elementsCount; i++) {
+                    // generates random color
+                    let color = "#" + getRndInteger(100000,999999);
+                    // generates 'text'
+                    textVar = textVar + " text text";
+
+                    if (i == 0) {
+                        // adds active <li> element in the existing <ul>
+                        $("#list").append(
+                            $("<li>").attr("class", "active")
+                                .append(
+                                    $("<a>", {
+                                        click: function () {
+
+                                        }
+                                    }).attr("href", "#tab" + (i + 1))
+                                        .attr("data-toggle", "tab")
+                                        .attr("aria-expanded", "true")
+                                        .append(i + 1)));
+
+                        // adds active section        
+                        $("#myTabContent").append(
+                            $("<div>")
+                                .addClass("tab-pane fade active in")
+                                .css("background-color",color)
+                                .attr("id", "tab" + (i + 1))
+                                .append(
+                                    $("<p>").text((i + 1) + textVar)
+                                )
+                        );
+
+                    } else {
+                        // adds <li> element in the existing <ul>
+                        $("#list").append(
+                            $("<li>").append(
+                                $("<a>", {
+                                    click: function () {
+
+                                    }
+                                }).attr("href", "#tab" + (i + 1))
+                                    .attr("data-toggle", "tab")
+                                    .attr("aria-expanded", "true")
+                                    .append(i + 1)));
+
+                        // adds the rest sections      
+                        $("#myTabContent").append(
+                            $("<div>")
+                                .addClass("tab-pane fade")
+                                .css("background-color",color)
+                                .attr("id", "tab" + (i + 1))
+                                .append(
+                                    $("<p>").text((i + 1) + textVar)
+                                )
+                        );
+                    }
+                }
+            });
+        });
+
+        // generates random number between min (included) and max (excluded)
+        function getRndInteger(min, max) {
+            return Math.floor(Math.random() * (max - min) ) + min;
+        }
+
+    </script>
+</head>
+
+<body>
+    <br>
+    <div class="container">
+        <div class="row">
+            <label for="">Enter the number of items in a list:</label>
+            <input type="number" class="form-control" id="num">
+            <br>
+            <input type="submit" class="btn btn-default" id="btn">
+        </div>
+        <br>
+        <div class="row">
+            <div id="tabs">
+                <ul id="list" class="nav nav-tabs">
+                </ul>
+                <div id="myTabContent" class="tab-content">
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
